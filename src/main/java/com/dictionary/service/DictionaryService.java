@@ -158,7 +158,11 @@ public class DictionaryService {
 	 * @param key
 	 */
 	public void printMembers(String key){
-		printList(dictionary.get(key));
+		if(dictionary.get(key)!= null && !dictionary.get(key).isEmpty()) {
+			printList(dictionary.get(key));
+		} else {
+			printEmptySet();
+		}
 	}
 	
 	/**

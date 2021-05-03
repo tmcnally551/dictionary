@@ -47,7 +47,7 @@ public class Application {
     	}
     	if(validInput){
 	    	Commands command = Commands.valueOf(userInput[0]);
-	    	if(command.getCommandLength() != userInput.length) {
+	    	if((command.getCommandLength() != userInput.length) && !"REMOVE".equals(command.getCommand())) {
 	    		System.out.println(command + " Command requires " + command.getCommandLength() + " values separated by a space.");
 	    	} else {
 		    	switch (command) {
@@ -88,7 +88,11 @@ public class Application {
 					dictionaryService.printMembers(userInput[1]);
 					break;
 				case REMOVE:
-					dictionaryService.remove(userInput[1],userInput[2]);
+					if(userInput.length < 3) {
+						dictionaryService.remove(userInput[1],null);
+					} else {
+						dictionaryService.remove(userInput[1],userInput[2]);
+					}
 					break;
 				case REMOVEALL:
 					dictionaryService.removeAll(userInput[1]);
